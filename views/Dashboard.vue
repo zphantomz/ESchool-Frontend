@@ -16,9 +16,15 @@
                     <b-progress height={} class="progress-xs" :value="place.nightUsagePerc" variant="info"></b-progress>
                   </div>
                 </li>
-                <li class="legend" v-if="col == 1">
-                  <b-badge pill variant="warning"></b-badge><small>Day</small> &nbsp;
-                  <b-badge pill variant="info"></b-badge><small>Night</small>
+              </ul>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col lg="12">
+              <ul class="horizontal-bars">
+                <li class="legend">
+                  <b-badge pill variant="warning"></b-badge>&nbsp;<small>Day</small> &nbsp;
+                  <b-badge pill variant="info"></b-badge>&nbsp;<small>Night</small>
                 </li>
               </ul>
             </b-col>
@@ -31,6 +37,8 @@
 
 <script>
 import Card from '../components/Card'
+import axios from 'axios'
+
 export default {
   name: 'dashboard',
   components: {
@@ -58,6 +66,14 @@ export default {
       ]
       // placePerColumn: Math.ceil(places.length / 3)
     }
+  },
+  created  () {
+    axios.get('http://127.0.0.1:8000/places/_all')
+      .then((response) => {
+        this.places = response.data
+        console.log(response.data)
+      })
+    console.log(this.$appName)
   }
 }
 </script>

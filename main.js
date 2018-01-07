@@ -6,7 +6,7 @@ import App from './App'
 import router from './router'
 
 Vue.use(BootstrapVue)
-
+Vue.prototype.$apiLocation = 'http://localhost:8000'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
